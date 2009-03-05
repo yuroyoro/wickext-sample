@@ -1,0 +1,52 @@
+<html>
+    <head>
+        <title>Wickext Sample - FlexiGrid</title>
+        <link rel="stylesheet" type="text/css" wicket:id="css"/>
+    </head>
+    <body>
+    <div class="warpper">
+    <div class="content">
+    	<div>
+    		<a wicket:id="menuLink">メニューへ</a>
+    	</div>
+    
+        <h1>FlexiGrid</h1>
+        
+        <div class="code">
+        	ソース。
+        	<pre>
+add(new GridPlugin("flexigrid-example"));
+        	</pre>
+        </div>
+
+		<table wicket:id="flexigrid-example" width="500">
+			<thead>
+				<tr>
+					<th width="100">col1</th>
+					<th width="200">col2</th>
+					<th width="150">col3</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>ほげ1</td>
+					<td>ふげ1</td>
+					<td>ほが1</td>
+				</tr>
+				<tr>
+					<td>ほげ2</td>
+					<td>ふげ2</td>
+					<td>ほが2</td>
+				</tr>
+				<tr>
+					<td>ほげ3</td>
+					<td>ふげ3</td>
+					<td>ほが3</td>
+				</tr>
+			</tbody>  
+		</table>
+	</div>
+	</div>
+	</body>
+</html>
+

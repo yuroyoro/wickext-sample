@@ -1,0 +1,32 @@
+<html>
+    <head>
+        <title>Wickext Sample - Date Picker</title>
+        <link rel="stylesheet" type="text/css" wicket:id="css"/>
+    </head>
+    <body>
+    <div class="warpper">
+    <div class="content">
+    	<div>
+    		<a wicket:id="menuLink">メニューへ</a>
+    	</div>
+    
+        <h1>Date Picker</h1>
+        
+        <div class="code">
+        	ソース。
+        	<pre>
+	    Form&lt;Model&lt;String&gt;&gt; acForm = new Form&lt;Model&lt;String&gt;&gt;("acForm");
+		final DatePicker&lt;String&gt; acText = new DatePicker&lt;String&gt;("datePickerText", new Model&lt;String&gt;(""));
+		acForm.add(acText);
+		this.add(acForm);
+        	</pre>
+        </div>
+
+		<form wicket:id="acForm">
+      		<input type="text" wicket:id="datePickerText"/>
+    	</form>
+    </div>
+    </div>
+	</body>
+</html>
+

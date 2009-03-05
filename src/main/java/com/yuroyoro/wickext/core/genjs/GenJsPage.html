@@ -1,0 +1,39 @@
+<html>
+    <head>
+        <title>Wickext Sample - Generating JavaScript</title>
+        <link rel="stylesheet" type="text/css" wicket:id="css"/>
+    </head>
+    <body>
+    <div class="warpper">
+    <div class="content">
+    	<div>
+    		<a wicket:id="menuLink">メニューへ</a>
+    	</div>
+    
+        <h1>Generating JavaScript</h1>
+		
+		<div class="code">
+			Page/Componentでこのように書くと
+			<pre>
+public MyPage() {			
+  JsQuery jsq = new JsQuery();
+  jsq.$(".foo").chain("css", "{border: '1px solid red'}");
+  jsq.contribute(this);			
+}
+			</pre>
+		</div>
+		<div class="code">
+			こんなJavaScriptが生成される。
+			<pre>
+$(".foo").css({border: '1px solid red'});
+			</pre>
+		</div>
+		
+		<div class="foo">
+		 ここは生成されたJavaScriptで赤くなる。
+		</div>
+	</div>
+	</div>
+	</body>
+</html>
+

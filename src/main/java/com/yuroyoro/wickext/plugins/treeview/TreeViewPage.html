@@ -1,0 +1,37 @@
+<html>
+    <head>
+        <title>Wickext Sample - Tree View</title>
+        <link rel="stylesheet" type="text/css" wicket:id="css"/>
+    </head>
+    <body>
+    <div class="warpper">
+    <div class="content">
+    	<div>
+    		<a wicket:id="menuLink">メニューへ</a>
+    	</div>
+    
+        <h1>Tree View</h1>
+        
+        <div class="code">
+        	ソース。
+        	<pre>
+add(new TreeViewPlugin("treeview-example"));
+        	</pre>
+        </div>
+
+		<ul wicket:id="treeview-example">
+		  <li>
+		  	<span>Item 1</span>
+		  		<ul>
+		  			<li>Foo 1</li>
+		  			<li>Foo 2</li>
+		  			<li>Foo 3</li>
+		  		</ul>
+		  	</li>
+		  	<li>Item 2</li>
+		 </ul>
+	</div>
+	</div>
+	</body>
+</html>
+

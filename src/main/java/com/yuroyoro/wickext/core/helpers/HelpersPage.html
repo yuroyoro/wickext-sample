@@ -1,0 +1,104 @@
+<html>
+    <head>
+        <title>Wickext Sample - Helpers</title>
+        <link rel="stylesheet" type="text/css" wicket:id="css"/>
+        <style type="text/css">
+        .you-are-now-styled{
+        	border:1px solid red
+        }
+        </style>
+    </head>
+    <body>
+    <div class="warpper">
+    <div class="content">
+    	<div>
+    		<a wicket:id="menuLink">メニューへ</a>
+    	</div>
+    
+        <h1>WickeXt Helpers - JQueryのAPIをWikcetへ</h1>
+
+ 		<div class="code">
+ 			TraversingHelp.eq(int position) - $()でマッチした要素から指定Indexの要素を返します。
+ 			<pre>
+JsQuery jsq = new JsQuery();
+jsq.$(".foo")
+   .chain(TraversingHelper.eq(1))
+   .chain(CssHelper.css(new Options().putLiteral("border", "1px solid red")));
+jsq.contribute(this);
+ 			</pre>
+ 			
+ 			<p>
+ 				2番目の要素だけ赤くなるはず。
+ 				<p>
+		  			<span class="foo" style="border: 1px solid blue;">class=foo</span>
+		  			<span class="foo" style="border: 1px solid red;">class=foo</span>
+		  			<span class="foo" style="border: 1px solid blue;">class=foo</span>
+		  		</p>
+	  		</p>
+ 		</div>
+ 		
+ 		<div class="code">
+ 			TraversingHelp.siblings(String expression) - 指定したセレクタの兄弟要素を返します。
+ 			
+ 			<pre>
+JsQuery jsq = new JsQuery();
+jsq.$("#foo")
+   .chain(TraversingHelper.siblings(".style-me"))
+   .chain(CssHelper.css(
+  	new Options().putLiteral("border", "1px solid red")
+   ));
+jsq.contribute(this);
+ 			</pre>
+ 			
+ 			<p>
+ 				3番目の要素が赤くなるはず
+ 				<p>
+					<span id="foo" style="border: 1px solid blue;">id=foo</span>
+		  			<span style="border: 1px solid blue;">Sibling of #foo</span>
+		  			<span class="style-me" style="border: 1px solid red;">Sibling of #foo with class=style-me</span>
+		  		</p>		  			
+			</p>
+ 		</div>
+ 		
+ 		<div class="code">
+ 			AttributesHelper.addClass(String className) - cssクラスを追加します。
+ 			<pre>
+JsQuery jsq = new JsQuery();
+jsq.$(".foo2")
+   .chain(TraversingHelper.siblings(".style-me"))
+   .chain(AttributesHelper.addClass("you-are-now-styled"));
+jsq.contribute(this);
+ 			</pre>
+ 			
+ 			<p> 
+ 				<p>
+		  			<span class="foo2" style="border: 1px solid blue;">class=foo2</span>
+		  			<span style="border: 1px solid blue;">Just a span !</span>
+		  			<span class="style-me" >This element now holds class=style-me &amp; class=you-are-now-styled</span>		  			
+				</p>
+			</p>  
+ 		</div>
+	
+		<div class="code">
+			CssHelper.css(String name, String value) - CSSの要素を追加します。
+			<pre>
+JsQuery jsq = new JsQuery();
+jsq.$(".foo-important")
+   .chain(CssHelper.css("border", "1px solid red"));
+jsq.contribute(this);
+			</pre>
+			
+			<p>
+				1番目と3番目が赤くなるはず。
+				<p>
+					<span class="foo-important">class=foo2</span>
+  					<span style="border: 1px solid blue;">Just a span !</span>
+  					<span class="foo-important">This element now holds class=style-me &amp; class=you-are-now-styled</span>
+				</p>
+			</p>
+		</div>
+	</div>
+	</div>
+	</body>
+</html>
+

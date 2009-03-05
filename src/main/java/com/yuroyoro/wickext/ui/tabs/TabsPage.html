@@ -1,0 +1,61 @@
+<html>
+    <head>
+        <title>Wickext Sample - Tab</title>
+        <link rel="stylesheet" type="text/css" wicket:id="css"/>
+    </head>
+    <body>
+    <div class="warpper">
+    <div class="content">
+    	<div>
+    		<a wicket:id="menuLink">メニューへ</a>
+    	</div>
+    
+        <h1>クリックでTab切り替え</h1>
+        
+        <div class="code">
+        	ソース。
+        	<pre>
+		
+		final Tabs tabs = new Tabs("tabs");
+		this.add(tabs);
+		
+		
+		final WebMarkupContainer webMarkupContainer = new WebMarkupContainer("tabsPanel");
+		webMarkupContainer.setOutputMarkupId(true);
+		add(webMarkupContainer);
+
+		Button addTabButton = new Button("tabsAdd");
+		add(addTabButton);
+		addTabButton.add(new WickextEventBehavior(new Event(MouseEvent.CLICK) {
+
+			private static final long serialVersionUID = 1L;
+
+			@Override
+			public JsScope callback() {
+				return JsScope.quickScope(tabs.add(0, "Tabbified ", webMarkupContainer).render());
+			}
+			
+		}));
+        	</pre>
+        </div>
+
+		<ul class="tabs" wicket:id="tabs">
+			<li>
+				<a href="#fragment-1">tab1</a>
+			</li>
+			<li>
+				<a href="#fragment-2">tab2</a>
+			</li>
+			<li>
+				<a href="#fragment-3">tab3</a>
+			</li>
+		</ul>
+		<div id="fragment-1"> タブその1 </div>
+		<div id="fragment-2"> タブその2 </div>
+		<div id="fragment-3"> <a wicket:id="tabsAdd" href="#">Add a tab !</a>タブその3 </div>
+		<div style="display: none;" wicket:id="tabsPanel"> This content can be tabbified ! </div>
+	</div>
+	</div>
+</body>
+</html>
+

@@ -1,0 +1,99 @@
+<html>
+    <head>
+        <title>Wickext Sample - JQuery Events</title>
+        <link rel="stylesheet" type="text/css" wicket:id="css"/>
+    </head>
+    <body>
+    <div class="warpper">
+    <div class="content">
+    	<div>
+    		<a wicket:id="menuLink">メニューへ</a>
+    	</div>
+    
+        <h1>JQuery Events</h1>
+		
+		<div class="code">
+			<p> Wicketのbehaviorsを使わなくてもJavaScriptのイベントが発行できる。</p>
+			Page/Componentでこのように書くと
+			<pre>
+JsQuery jsq = new JsQuery(); 
+jsq.$("#clickable").chain(new Event(MouseEvent.CLICK) { 
+    @Override public JsScope callback() {
+        return new JsScope() {
+            @Override protected void execute(JsScopeContext scopeContext) {
+                scopeContext.self().chain(CssHelper.css("border", "1px solid red")); 
+            } 
+        }; 
+    } 
+}); 
+jsq.contribute(this);
+			</pre>
+		</div>
+		<div class="code">
+			こんなJavaScriptが生成される。
+			<pre>
+$("#clickable").bind("click", function() {
+    this.css("border", "1px solid red");
+});
+			</pre>
+		</div>
+		
+		<div id="clickable">
+		 ここをクリックすると、callback()で返されるjavascriptが実行されて赤くなる。
+		</div>
+		
+		<div class="code">
+			<p> Wicketのbehaviorsを使ってもイベントが発行できる。</p>
+			<pre>
+Button button = new Button("sample1");
+add(button);
+button.add(new WickextEventBehavior(new Event(MouseEvent.CLICK) {		
+    @Override
+    public JsScope callback() {
+        return JsScope.quickScope("alert(this)");
+    }	
+}));
+			</pre>
+		</div>
+		
+		<div id="sample1" wicket:id="sample1">
+		ここをクリックすると、behaviorsで設定したjavascriptが実行されてダイアログが表示。
+		</div>
+		
+		
+		<div class="code">
+			<p> WickextAjaxEventBehaviorでAjaxイベントも発行できる。</p>
+			<pre>
+WebMarkupContainer div1 = new WebMarkupContainer("firstDiv");
+add(div1);
+
+final WebMarkupContainer div2 = new WebMarkupContainer("secondDiv");
+div2.setOutputMarkupId(true);
+add(div2);
+
+div1.add(new WickextAjaxEventBehavior(MouseEvent.DBLCLICK) {
+    @Override
+    protected void respond(AjaxRequestTarget target) {
+        // do some ajax Java stuff here
+				
+        // adding javascript to the outputed response to hide the div
+        target.appendJavascript(
+            new JsQuery(div2)
+		    .$()
+		    .chain(new FadeOut(EffectSpeed.SLOW))
+		    .render()
+		    .toString()
+	);
+    }
+});
+			</pre>
+		</div>
+		
+		<div wicket:id="firstDiv" style="border:1px solid red">ここをダブルクリックすると、フェードアウトする。</div>
+		<div wicket:id="secondDiv" style="border:1px solid blue">ここは何もなし。</div>
+
+	</div>
+	</div>
+	</body>
+</html>
+

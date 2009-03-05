@@ -1,0 +1,46 @@
+<html>
+    <head>
+        <title>Wickext Sample - JQuery Effects</title>
+        <link rel="stylesheet" type="text/css" wicket:id="css"/>
+    </head>
+    <body>
+    <div class="warpper">
+    <div class="content">
+    	<div>
+    		<a wicket:id="menuLink">メニューへ</a>
+    	</div>
+    
+        <h1>JQuery Effects</h1>
+		
+		<div class="code">
+			<p> JQueryのeffectをWicketのコードでかける。</p>
+			Page/Componentでこのように書くと
+			<pre>
+Button button = new Button("effects.button.show");
+add(button);
+button.add(new WickextEventBehavior(new Event(MouseEvent.CLICK) {
+	@Override
+	public JsScope callback() {
+		return new JsScope() {
+			@Override
+			protected void execute(JsScopeContext scopeContext) {
+				scopeContext.append(new JsQuery().$(".show-me").chain(
+						new FadeIn(EffectSpeed.FAST)).render());
+			}
+		};
+	}
+}));
+			</pre>
+		</div>
+		<p>
+			このボタンをクリックすると、隠れてるdivがフェードインしますよ。
+			<input id="effects_button_show5" type="button" value="this button" wicket:id="effects.button.show"/>
+		</p>
+		<div class="show-me" style="display: none;"> Show me ! </div>
+		<div class="show-me" style="display: none;"> Show me ! </div>
+		
+	</div>
+	</div>
+	</body>
+</html>
+

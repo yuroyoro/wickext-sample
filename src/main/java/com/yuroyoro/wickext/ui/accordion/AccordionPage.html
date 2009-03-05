@@ -1,0 +1,43 @@
+<html>
+    <head>
+        <title>Wickext Sample - アコーディオン</title>
+        <link rel="stylesheet" type="text/css" wicket:id="css"/>
+    </head>
+    <body>
+    <div class="warpper">
+    <div class="content">
+    	<div>
+    		<a wicket:id="menuLink">メニューへ</a>
+    	</div>
+    
+        <h1>クリックで展開するアコーディオン</h1>
+        
+        <div class="code">
+        	ソース。
+        	<pre>
+Accordion accordion = new Accordion("accordion");
+// デフォルトのヘッダタグは a だが、すべての a が反応してしまうので、class属性を敢えて指定する
+accordion.setHeader("a.head");
+this.add(accordion);
+        	</pre>
+        </div>
+
+		<ul class="accordion" wicket:id="accordion">
+			<li>
+				<a class="head">accordion1</a>
+				<div>アコーディオンその1</div>
+			</li>
+			<li>
+				<a class="head">accordion2</a>
+				<div>アコーディオンその2</div>
+			</li>
+			<li>
+				<a class="head">accordion3</a>
+				<div>アコーディオンその3</div>
+			</li>
+		</ul>
+	</div>
+	</div>
+</body>
+</html>
+

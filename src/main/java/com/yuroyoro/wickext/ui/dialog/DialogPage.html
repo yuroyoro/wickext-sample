@@ -1,0 +1,32 @@
+<html>
+    <head>
+        <title>Wickext Sample - Dialog</title>
+        <link rel="stylesheet" type="text/css" wicket:id="css"/>
+    </head>
+    <body>
+    <div class="warpper">
+    <div class="content">
+    	<div>
+    		<a wicket:id="menuLink">メニューへ</a>
+    	</div>
+    
+        <h1>モーダルなダイアログ</h1>
+        
+        <div class="code">
+        	ソース。
+        	<pre>
+Window window = new Window("modal");
+add(window);
+window.add(new Label("message", "これはWickextで出してるダイアログなんだぜ?"));
+window.setAutoOpen(true);
+        	</pre>
+        </div>
+        
+        <div wicket:id="modal" title="Wickext Modal Dialog">
+        	<span wicket:id="message">Message will be here.</span>
+        </div>
+    </div>
+    </div>
+    </body>
+</html>
+
